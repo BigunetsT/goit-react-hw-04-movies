@@ -10,26 +10,21 @@ import PropTypes from 'prop-types';
 class MovieCard extends Component {
   handleGoBack = () => {
     const { location, history } = this.props;
-    // history.push(location?.state?.from);
+    const search = location.search.split('').slice(1).join('');
     if (location.state) {
       history.push(location.state.from);
       return;
     }
-    console.log('no state');
-    history.push({
-      pathname: routes.movies,
-    });
-
-    // if (search) {
-    //   history.push({
-    //     pathname: '/movies',
-    //     search: search,
-    //   });
-    // } else {
-    //   history.push({
-    //     pathname: '/',
-    //   });
-    // }
+    if (location.search) {
+      history.push({
+        pathname: routes.movies,
+        search: `query=${search}`,
+      });
+    } else {
+      history.push({
+        pathname: routes.home,
+      });
+    }
   };
   render() {
     const {
@@ -40,6 +35,7 @@ class MovieCard extends Component {
       releaseDate,
       rating,
       match,
+      location,
     } = this.props;
     return (
       <>
@@ -77,7 +73,7 @@ class MovieCard extends Component {
               <NavLink
                 className={styles.navLink}
                 activeClassName={styles.activeNavLink}
-                to={`${match.url}/cast`}
+                to={{ pathname: `${match.url}/cast`, search: location.search }}
               >
                 Cast
               </NavLink>
@@ -86,7 +82,10 @@ class MovieCard extends Component {
               <NavLink
                 className={styles.navLink}
                 activeClassName={styles.activeNavLink}
-                to={`${match.url}/reviews`}
+                to={{
+                  pathname: `${match.url}/reviews`,
+                  search: location.search,
+                }}
               >
                 Reviews
               </NavLink>
