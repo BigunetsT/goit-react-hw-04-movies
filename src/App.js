@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import AppBar from './components/AppBar';
 import routes from './routes';
 
@@ -21,7 +21,8 @@ const App = () => (
       <Switch>
         <Route exact path={routes.home} component={HomePage} />
         <Route exact path={routes.movies} component={MoviesPage} />
-        <Route exact path={routes.movieDetails} component={MovieDetailsPage} />
+        <Route path={routes.movieDetails} component={MovieDetailsPage} />
+        <Redirect to={routes.home} />
       </Switch>
     </Suspense>
   </>

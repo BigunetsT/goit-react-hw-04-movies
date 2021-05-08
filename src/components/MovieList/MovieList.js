@@ -1,12 +1,22 @@
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import styles from './MovieList.module.scss';
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, location, searchQuery }) => {
   return (
-    <ul>
+    <ul className={styles.list}>
       {movies.map(movie => (
         <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>{movie?.title || movie.name}</Link>
+          <Link
+            className={styles.link}
+            to={{
+              pathname: `/movies/${movie.id}`,
+              state: { from: location },
+              search: searchQuery,
+            }}
+          >
+            {movie?.title || movie.name}
+          </Link>
         </li>
       ))}
     </ul>
@@ -21,6 +31,7 @@ MovieList.propTypes = {
       name: PropTypes.string,
     }),
   ).isRequired,
+  searchQuery: PropTypes.string,
 };
 
 export default withRouter(MovieList);

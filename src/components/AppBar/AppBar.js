@@ -1,9 +1,10 @@
 import React from 'react';
 import Navigation from '../Navigation';
+import styles from './AppBar.module.scss';
 
 const AppBar = () => {
   return (
-    <header>
+    <header className={styles.header}>
       <Navigation />
     </header>
   );

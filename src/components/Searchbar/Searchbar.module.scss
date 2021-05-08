@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+
+.form {
+  margin-bottom: 20px;
+}
+
+.input {
+  display: inline-block;
+  padding: 2px 5px;
+  width: 300px;
+  border: none;
+  outline: none;
+  border: 1px solid var(--main-border-color);
+  border-radius: 5px;
+  &:focus {
+    border: 2px solid var(--second-border-color);
+    box-shadow: 0 0 2px 0 var(--second-border-color) inset,
+      0 0 2px 2px var(--second-border-color);
+  }
+}
+.btn {
+  font-weight: bold;
+  cursor: pointer;
+}

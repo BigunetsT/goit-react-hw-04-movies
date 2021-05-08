@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import styles from './Searchbar.module.scss';
+import styles from './Searchbar.module.scss';
 
 class Searchbar extends Component {
   state = {
@@ -15,15 +15,20 @@ class Searchbar extends Component {
   };
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-          onChange={this.handleChange}
-        />
-        <button type="submit">Search</button>
+      <form className={styles.form} onSubmit={this.handleSubmit}>
+        <label>
+          <input
+            className={styles.input}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search movies"
+            onChange={this.handleChange}
+          />
+        </label>
+        <button className={styles.btn} type="submit">
+          Search
+        </button>
       </form>
     );
   }
