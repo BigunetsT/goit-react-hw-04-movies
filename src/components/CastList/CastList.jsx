@@ -16,7 +16,7 @@ const CastList = ({ cast }) => {
           </li>
         ))
       ) : (
-        <p>NO CAST</p>
+        <p>We don't have cast for this movie.</p>
       )}
     </ul>
   );

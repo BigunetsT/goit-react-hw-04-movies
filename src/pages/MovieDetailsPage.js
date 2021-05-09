@@ -7,6 +7,7 @@ import changeGenresList from '../helpers/changeGenresList';
 
 class MovieDetailsPage extends Component {
   state = {
+    movie: '',
     imgUrl: '',
     title: '',
     descr: '',
@@ -20,6 +21,7 @@ class MovieDetailsPage extends Component {
       const { movieId } = this.props.match.params;
       const data = await moviesApi.searchMovieDetailsById(Number(movieId));
       this.setState({
+        movie: data,
         imgUrl: generatePosterPath(data.poster_path),
         title: data.title,
         descr: data.overview,
@@ -36,10 +38,19 @@ class MovieDetailsPage extends Component {
 
   render() {
     const { movieId } = this.props.match.params;
-    const { imgUrl, title, descr, genres, releaseDate, rating } = this.state;
+    const {
+      imgUrl,
+      title,
+      descr,
+      genres,
+      releaseDate,
+      rating,
+      movie,
+    } = this.state;
     return (
       <MovieCard
         {...this.props}
+        movie={movie}
         movieId={movieId}
         imgUrl={imgUrl}
         title={title}
@@ -53,6 +64,7 @@ class MovieDetailsPage extends Component {
 }
 
 MovieDetailsPage.propTypes = {
+  movie: PropTypes.string,
   movieId: PropTypes.string,
   imgUrl: PropTypes.string,
   title: PropTypes.string,
